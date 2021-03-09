@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>ログイン</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item--logo">
+                    <a href=""></a>
+                    <img class="nav__logo-img" src="img/logo.png" alt="">
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">ログイン</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">作品一覧</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="main__content">
+            <h1 class="content__title"></h1>
+            <div class="content__item">
+                <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
+                <div class="content__date">
+                <p>
+                  ログインに失敗しました。  
+                </p>
+                <form action="">
+                    <button>戻る</button>
+                </form>                       
+                </div>
+                 
+            </div>
+        </div>
+    </main>
+    <!-- <footer class="footer"></footer> -->
+    <style>
+        .main__content{
+            /* background-color: #404040; */
+        }
+        .content__title{
+            text-align: center;
+            /* background: white; */
+        }
+        .content__item{
+            /* background-color: #ebebeb; */
+        }
+        .content__date{
+            /* background-color: #404040; */
+            margin: 0 auto;
+            text-align: center;
+            width: 620px;
+            height: 620px;
+        }
+        button{
+            position:absolute;
+            margin-left: 5px;
+        }
+    </style>
+</body>
+
+</html>
