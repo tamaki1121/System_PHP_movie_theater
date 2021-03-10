@@ -14,8 +14,9 @@
         <nav class="header__nav">
             <ul class="nav__list">
                 <li class="nav__item--logo">
-                    <a href=""></a>
-                    <img class="nav__logo-img" src="logo.png" alt="">
+                    <a href="home.html">
+                        <img class="nav__logo-img" src="logo.png" alt="">
+                    </a>
                 </li>
                 <li class="nav__item">
                     <a class="nav__link" href="google.com">
@@ -33,22 +34,31 @@
     <main class="main">
         <div class="main__content">
             <h1 class="content__title">上映日時</h1>
-            <p>日付を選択してください</p>
-            <ul>
-                <li>
-                    <label for="hiniti1"><input type="radio" name="hiniti" id="hiniti1">09:00~11:00</label>
-                </li>
-                <li>
-                    <label for="hiniti2"><input type="radio" name="hiniti" id="hiniti2">14:00~16:00</label>
-                </li>
-                <li>
-                    <label for="hiniti3"><input type="radio" name="hiniti" id="hiniti3">19:00~21:00</label>
-                </li>
-            </ul>
-            <a href="time.html"><button>次へ</button></a>
             <div class="content__item">
                 <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
+                <p>日付を選択してください</p>
+                <form action="#" method="POST">
+                    <div>
+                        <img class="date__img" src="" alt="">
+                    </div>
+                    <ul class="content__radio">
+                        <li>
+                            <label for="hiniti1"><input type="radio" name="hiniti" id="hiniti1">3/5</label>
+                        </li>
+                        <li>
+                            <label for="hiniti2"><input type="radio" name="hiniti" id="hiniti2">3/6</label>
+                        </li>
+                        <li>
+                            <label for="hiniti3"><input type="radio" name="hiniti" id="hiniti3">3/7</label>
+                        </li>
+                        <div>
+                            <input type="submit" value="次へ" class="content__button">
+
+                        </div>
+                    </ul>
+                </form>
             </div>
+
         </div>
     </main>
     <!-- <footer class="footer"></footer> -->
