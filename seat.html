@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>映画館</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item--logo">
+                    <a href=""></a>
+                    <img class="nav__logo-img" src="images/logo.png" alt="">
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">ログイン</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">作品一覧</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="main__content">
+            <h1 class="content__title">お好みの席をお選びください</h1>
+            <div class="content__item">
+                <div id="app" class="form__seat-app">
+                    <div class="form__seat-form">
+                        <div class="seat-form__row" v-for="(items,n) in roomData">
+                            <div class="seat-form__data" v-for="(item, index) in items"
+                                :class="outputData[n * items.length + index].classObj"
+                                @click="action(n * items.length + index)">
+                                <div class="seat-form__obj-text">
+                                    {{outputData[n * items.length +index].text}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seat-form__result-box">
+                        <div class="seat-form__result-item" v-for="item in inputData">
+                            <div class="seat-form__result-text">{{ item }}</div>
+                        </div>
+                        <input class="" v-for="item in inputData" type="hidden" :value="item" name="seat[]">
+                        <input v-if="inputData.length > 0" type="submit" value="確定する">
+                        <!-- <button v-if="inputData.length > 0" @click="delete" value="全て取り消す"> -->
+                    </div>
+                </div>
+                <p class="seat-form__desc"><span></span>利用不可 <span></span>選択済み</p>
+            </div>
+        </div>
+    </main>
+    <!-- <footer class="footer"></footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
