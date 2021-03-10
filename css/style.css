@@ -1,4 +1,229 @@
-/* Sample CSS */
-p {
-  color: lime;
+:root {
+  /* サイトのカラー普通・暗い・明るい */
+  --main-color: #404040;
+  --main-color-dark: #2b2a2a;
+  --main-color-bright: #ebebeb;
+
+  /* 余白、中・大・小 */
+  --distance: 15px;
+  --distance-big: 25px;
+  --distance-small: 5px;
+}
+/* 使い方 */
+/* background-color: var(--main-color); */
+/* margin-top: var(--distance); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ページ本体 */
+.main {
+  width: 930px;
+  margin: 0 auto;
+  padding: var(--distance-big);
+}
+/* ページ内のコンテンツ */
+.main__content {
+  width: 880px;
+  height: 1000px;
+  padding: var(--distance);
+}
+/* ページのタイトル(h1タグ) */
+.content__title {
+}
+/* コンテンツ内の要素 */
+.content__item {
+  width: 850px;
+  margin-bottom: var(--distance-big);
+  padding: var(--distance);
+}
+/* 作品名などコンテンツ内の要素のタイトル(h2タグ？) */
+.item__title {
+}
+/* 画像のサイズ(暫定) */
+.item__img {
+  width: 200px;
+  height: 280px;
+  background-color: var(--main-color-dark);
+}
+.item__img-big {
+  width: 240px;
+  height: 336px;
+  background-color: var(--main-color-dark);
+}
+
+/* ↓ここから追加 */
+/* 上のスタイルに追加したい場合は */
+/* 同じ名前のcssを指定して↓に追加 */
+
+/* ナビゲーションバー nav.php */
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: black;
+}
+.nav__list {
+  width: 100%;
+  height: 60px;
+  padding: 5px;
+  overflow: hidden;
+  list-style: none;
+}
+.nav__item--logo {
+  float: left;
+}
+.nav__logo-img {
+  height: 50px;
+  width: 200px;
+  background-color: green;
+}
+.nav__item {
+  height: 50px;
+  width: 150px;
+  margin-left: 5px;
+  float: right;
+  border-radius: 8%;
+  color: white;
+  background-color: grey;
+  /* box-shadow: 3px 3px 3px 3px rgba(251, 255, 0, 0.938); */
+}
+.nav__item:hover {
+  box-shadow: 0 0 5px rgba(251, 255, 0, 1) inset;
+}
+.nav__item {
+}
+.nav__link {
+  height: 100%;
+  width: 100%;
+  border-radius: 8%;
+  font-size: 26px;
+  color: white;
+  font: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.nav__link:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav__link-inner {
+}
+/* 席選択ページ */
+.header {
+  z-index: 1;
+}
+.content__title {
+  background-color: var(--main-color-dark);
+  color: var(--main-color-bright);
+  padding: 5px;
+}
+.form__seat-app {
+  display: flex;
+  box-sizing: border-box;
+  height: 600px;
+}
+.form__seat-form {
+  width: 650px;
+  height: 600px;
+  display: table;
+  background: grey;
+  padding: 5px;
+}
+
+.seat-form__row {
+  display: table-row;
+}
+
+.seat-form__data {
+  display: table-cell;
+  text-align: center;
+  width: 45px;
+  height: 55px;
+  position: relative;
+}
+
+.seat-form__data div {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.seat-form__state--available {
+  cursor: pointer;
+  border: 2px solid grey;
+  background-color: white;
+  border-radius: 15%;
+}
+
+.seat-form__state--unavailable {
+  border: 2px solid grey;
+  border-radius: 15%;
+  background-color: red;
+}
+
+.seat-form__serected {
+  cursor: pointer;
+  border: 2px solid grey;
+  border-radius: 15%;
+  background-color: yellow;
+}
+.seat-form__state--available:hover,
+.seat-form__serected:hover {
+  border: 5px solid rgb(0, 119, 255);
+}
+
+.seat-form__state--black {
+  background-color: black;
+  color: white;
+}
+/* 結果画面 */
+body {
+  background-color: var(--main-color-bright);
+}
+.seat-form__result-box {
+  border: 1px solid var(--main-color);
+  width: 200px;
+  height: 100%;
+  padding: 5px;
+  background: var(--main-color-dark);
+}
+
+.seat-form__result-item {
+  background-color: white;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 5px;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.seat-form__desc {
+  padding: 5px;
+}
+.seat-form__desc span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+}
+.seat-form__desc span + span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: yellow;
+}
+/* 登録完了 */
+.item__success {
+  margin-top: 50px;
+  font-size: large;
+  text-align: center;
 }
