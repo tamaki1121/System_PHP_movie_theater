@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>ログイン</title>
 </head>
 
@@ -40,8 +40,8 @@
                         <p>名前</p>
                         <input type="text">
                         <p>パスワード</p>
-                        <input type="password">
-                        <button>ログイン</button>
+                        <input type="password"><br>
+                        <button class="ok__button">ログイン</button>
                     </form>
   
             </div>
@@ -64,17 +64,19 @@
 
         .content__date{
             /* background-color: #404040; */
-            margin: 0 auto;
-            
+            margin: 0 auto;         
             text-align: center;
             width: 620px;
             height: 620px;
         }
         
-        button {
-            position: absolute;
-            margin-left: 5px;
-        }
+        .ok__button {
+            margin: 10px;
+        padding: 10px 30px;
+        background-color: #b71c1c;
+        color: white;
+        border-style: none;
+      }
     </style>
 </body>
 
