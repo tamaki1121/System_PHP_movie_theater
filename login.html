@@ -35,49 +35,20 @@
             <h1 class="content__title">名前とパスワードを半角でご入力下さい。</h1>
             <div class="content__item">
                 <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
-               
-                    <form class="content__date">
-                        <p>名前</p>
-                        <input type="text">
-                        <p>パスワード</p>
-                        <input type="password"><br>
-                        <button class="ok__button">ログイン</button>
-                    </form>
-  
+
+                <form class="content__date" action="login.php" method="POST">
+                    <p>名前</p>
+                    <input type="text" name="name">
+                    <p>パスワード</p>
+                    <input type="password" name="password"><br>
+                    <button class="ok__button">ログイン</button>
+                </form>
+
             </div>
         </div>
     </main>
     <!-- <footer class="footer"></footer> -->
-    <style>
-        .main__content {
-            /* background-color: #404040; */
-        }
 
-        .content__title {
-            text-align: center;
-            /* background: white; */
-        }
-
-        .content__item {
-            /* background-color: #ebebeb; */
-        }
-
-        .content__date{
-            /* background-color: #404040; */
-            margin: 0 auto;         
-            text-align: center;
-            width: 620px;
-            height: 620px;
-        }
-        
-        .ok__button {
-            margin: 10px;
-        padding: 10px 30px;
-        background-color: #b71c1c;
-        color: white;
-        border-style: none;
-      }
-    </style>
 </body>
 
 </html>
