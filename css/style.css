@@ -118,32 +118,74 @@
   width: 200px;
   height: 280px;
   float: left;
+
   /* display: table-cell; */
-  background-color: blue;
+  /* background-color: blue; */
 }
-.content__item {
+
+.content__img:hover {
+  opacity: 0.5;
+}
+
+
+.--sakuhin {
   display: table;
-  background-color: grey;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  border-top: 1px solid #2b2a2a;
+  border-bottom: 1px solid #2b2a2a;
+  border-left: 1px solid #2b2a2a;
+  border-right: 1px solid #2b2a2a;
+  background-color: #e6ffff;
 }
 
 .content__sakuhin {
   width: auto;
-  margin-left: 25px;
+  margin-left: 20px;
   /* display: table-cell; */
   float: left;
-  background-color: red;
+  /* background-color: red; */
+  /* box-sizing: border-box;
+  border-top: 1px solid #2b2a2a;
+  border-bottom: 1px solid #2b2a2a;
+  border-left: 1px solid #2b2a2a;
+  border-right: 1px solid #2b2a2a; */
 }
 
 .content__sakuhinmei {
-  width: 230px;
+  /* width: 400px; */
   height: 45px;
   margin-bottom: 15px;
-  background-color: yellow;
+  padding: 5px;
+  box-sizing: border-box;
+  border-top: 1px solid #2b2a2a;
+  border-bottom: 1px solid #2b2a2a;
+  border-left: 1px solid #2b2a2a;
+  border-right: 1px solid #2b2a2a;
+  background-color: var(--main-color);
+  color: white;
+  /* background-color: yellow; */
 }
-
+.content__sakuhinmei:hover{
+  opacity: 0.5;
+}
 .content__arasuzi {
   width: 595px;
   height: 220px;
-  background-color: green;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #2b2a2a;
+  background-color: var(--main-color);
+  color: white;
+  /* background-color: green; */
+}
+body {
+  background-color: var(--main-color-bright);
 }
 
+.content__logout {
+  /* border: 1px solid #2b2a2a; */
+  text-align: center;
+  font-size: 30px;
+  margin-top: 150px;
+}
