@@ -1,6 +1,6 @@
 /*
 ##################################################
-# 映画館用データベースのセッティング  ver1          #  
+# 映画館用データベースのセッティング  ver1.1        #  
 # 作成 izutamaki                                 #
 ##################################################
 # データベース名 movie_theater_site
@@ -23,29 +23,29 @@
 # カラム名 id movie_work date_time room_name
 # 配信予定。
 #
-# テーブル名 seat
-# カラム名 id movie_plan_id number vacant
-# 座席情報。
-#
-# テーブル名 purchase
-# カラム名 id site_user_id
+# テーブル名 reserve
+# カラム名 id site_user_id movie_plan_id seat_number
+# 席の情報
 # 購入歴、購入するごとに記録される情報。
 #
-# テーブル名 reserve
-# カラム名 purchase_id seat_id
-# 席ごとの購入歴。
+# テーブル名 seat 削除
+# カラム名 id movie_plan_id number vacant
+# 座席情報。
 ##################################################
 # 不具合など
 #
 # room_nameはテーブルを新しく作る必要が出てくるかも
 # しれません。
 #
-# movie_planはレコードが多くなるため将来的に分割する
-# 必要があります。
+# seat_numberがユーザーからの入力を受け取るため、
+# 不正な値を入力される可能性があります。
+#
 ################################################## 
-# 編集履歴 
+# 編集履歴
 #
 # 21/03/06 ver1 完成
+# 21/03/11 ver1.1 seat テーブルの機能をreserve
+#          テーブルに移動
 #
 ################################################## 
 */
@@ -94,23 +94,11 @@ CREATE TABLE movie_plan(
     room_name VARCHAR(20) NOT NULL,
     FOREIGN KEY(movie_work_id) REFERENCES movie_work(id)
 );
-CREATE TABLE seat(
-    id INT auto_increment PRIMARY KEY,
-    movie_plan_id INT NOT NULL,
-    number VARCHAR(8) NOT NULL,
-    vacant BOOLEAN NOT NULL,
-    INDEX movie_plan_index(movie_plan_id),
-    FOREIGN KEY(movie_plan_id) REFERENCES movie_plan(id)
-);
-CREATE TABLE purchase(
+CREATE TABLE reserve(
     id INT auto_increment PRIMARY KEY,
     site_user_id INT NOT NULL,
-    FOREIGN KEY(site_user_id) REFERENCES site_user(id)
-);
-CREATE TABLE reserve(
-    purchase_id INT,
-    seat_id INT,
-    PRIMARY KEY(purchase_id, seat_id),
-    FOREIGN KEY(purchase_id) REFERENCES purchase(id),
-    FOREIGN KEY(seat_id) REFERENCES seat(id)
+    movie_plan_id INT NOT NULL,
+    seat_number VARCHAR(8) NOT NULL,
+    FOREIGN KEY(site_user_id) REFERENCES site_user(id),
+    FOREIGN KEY(movie_plan_id) REFERENCES movie_plan(id)
 );
