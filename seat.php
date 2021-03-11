@@ -1,1 +1,149 @@
-<?php phpinfo();
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>映画館</title>
+</head>
+
+<body>
+    <?php
+    if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
+    // if (!isset($_POST['time'])) {
+    if (false) {
+        $errorMessage = '時間ページからアクセスしてください。';
+    } else {
+        require 'seat_data.php';
+        $_POST['time'] = '1,2020-03-01,B';
+        $data = explode(',', $_POST['time']);
+        $_SESSION['time'] = $data[1];
+        $_SESSION['roomName'] = $data[2];
+        $_SESSION['timeId'] = $data[0];
+        if ($_SESSION['roomName'] == 'A') {
+            $list = $listA;
+            $room = $roomA;
+        } elseif ($_SESSION['roomName'] == 'B') {
+            $list = $listB;
+            $room = $roomB;
+        }
+        $pdo = (function () {
+            $user = 'myuser';
+            $password = 'hoge';
+            $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
+
+            try {
+                $PDObject = new PDO($dns, $user, $password);
+                $PDObject->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $PDObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (Exception $e) {
+                echo "DBの接続に問題がありました。";
+                echo $e->getMessage();
+                exit();
+            }
+            return $PDObject;
+        })();
+        try {
+            $unavailable = [];
+            $sql = "SELECT * 
+                    FROM reserve 
+                    WHERE movie_plan_id = :timeId";
+            $stm = $pdo->prepare($sql);
+            $stm->bindValue(':timeId', $_SESSION['timeId'], PDO::PARAM_INT);
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as  $val) {
+                $list[$val['seat_number']] = false;
+            }
+        } catch (Exception $e) {
+            echo "SQLの実行に問題がありました。";
+            echo $e->getMessage();
+            exit();
+        }
+    }
+    ?>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item--logo">
+                    <a href=""></a>
+                    <img class="nav__logo-img" src="images/logo.png" alt="">
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">ログイン</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">作品一覧</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="main__content">
+            <h1 class="content__title">お好みの席をお選びください</h1>
+            <div class="content__item">
+                <?php if (!isset($errorMessage)) : ?>
+                    <div id="app" class="form__seat-app">
+                        <div class="form__seat-form">
+                            <div class="seat-form__row" v-for="(items,n) in roomData">
+                                <div class="seat-form__data" v-for="(item, index) in items" :class="outputData[n * items.length + index].classObj" @click="action(n * items.length + index)">
+                                    <div class="seat-form__obj-text">
+                                        {{outputData[n * items.length +index].text}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seat-form__result-box">
+                            <div class="seat-form__result-item" v-for="item in inputData">
+                                <div class="seat-form__result-text">{{ item }}</div>
+                            </div>
+                            <form action="test.php" method="POST">
+                                <input class="" v-for="item in inputData" type="hidden" :value="item" name="seat[]">
+                                <input v-if="inputData.length > 0" type="submit" value="確定する">
+                            </form>
+                            <!-- <button v-if="inputData.length > 0" @click="delete" value="全て取り消す"> -->
+                        </div>
+                    </div>
+                    <p class="seat-form__desc"><span></span>利用不可 <span></span>選択済み</p>
+                <?php else : ?>
+                    <p><?= $errorMessage ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </main>
+    <!-- <footer class="footer"></footer> -->
+    <?php if (!isset($errorMessage)) : ?>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let list = [
+                <?php foreach ($list as $key => $val) : ?> {
+                        name: "<?= $key ?>",
+                        state: <?= $val ?>
+                    },
+                <?php endforeach; ?>
+            ]
+            let list2 = [
+                <?php foreach ($room as $val) :
+                    echo '[' ?>
+                    <?php foreach ($val as $sVal) : ?> {
+                            type: <?= $sVal['type'] ?>,
+                            text: "<?= $sVal['text'] ?>"
+                        },
+                    <?php
+                    endforeach;
+                    echo '],'; ?>
+                <?php endforeach; ?>
+            ]
+        </script>
+        <script src="js/script.js"></script>
+    <?php endif; ?>
+</body>
+
+</html>
