@@ -65,7 +65,7 @@ CREATE USER IF NOT EXISTS 'myuser'@'%' IDENTIFIED BY 'hoge';
 GRANT ALL ON movie_theater_site.* TO 'myuser'@'%' IDENTIFIED BY 'hoge';
 
 -- 権限を再読み込み　実際、必要ないらしい
-FLUSH PRIVILEGES;
+
 
 -- テーブルがすでにあったら削除
 -- リレーションがある場合、消す順番に注意
