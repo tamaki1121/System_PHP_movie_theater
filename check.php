@@ -1,7 +1,6 @@
-<?php
-if (!empty($_SESSION['product'])) {
-?>
-    <!DOCTYPE html>
+
+<?php session_start(); ?>
+<!DOCTYPE html>
     <html lang="jp">
 
     <head>
@@ -38,35 +37,39 @@ if (!empty($_SESSION['product'])) {
                 <h1 class="content__title">購入内容</h1>
                 <div class="content__item">
                     <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
+
                     <img src="img/movie_img1.jpg" class="item__img" />
                     <!-- <div class="content__confirm"> -->
                     <dl class="content__confirm__list">
-                        <?php
-                        $total = 0;
-                        foreach ($_SESSION['product'] as $id => $product) {
-                        ?>
                             <dt>作品名</dt>
-                            <dd>XXX</dd>
+                            <dd><?php echo $_SESSION['name']?></dd>
 
                             <dt>日時</dt>
-                            <dd>XX年XX月XX日(X)</dd>
-                            <dd>XX:XX ~ XX:XX</dd>
+                            <dd><?php echo$_SESSION['date_time']?></dd>
 
                             <dt>座席</dt>
-                            <dd>シアター１</dd>
-                            <dd><?=$seat?></dd>
-                            <dd>A1</dd>
+
+                            <?php
+                            if(isset($_POST['room_name'])){
+                                $_SESSION['room_name'];
+                            }
+
+                            if(isset($_POST['seat_id'])){
+                                $_SESSION['seat_id'];
+                            }
+                            $room_name = ($_SESSION['room_name']);
+                            $seat_id = ($_SESSION['seat_id']);
+                            ?>           
+
+                            <dd><?php echo ($room_name);?></dd>
+                            <dd><?php echo ($seat_id);?></dd>
+                            <dd><?php echo ($number);?></dd>
 
                             <dt>料金</dt>
                             <dd>1,500円</dd>
-                        <?php
-                        }
-                        ?>
 
-                        <form action="">
-                            <button class="ok__button">完了</button>
-                            <button class="back__button">戻る</button>
-                        </form>
+                            <button class="ok__button" onclick="">完了</button>
+                            <button class="back__button" onclick="">戻る</button>
                     </dl>
                     <!-- </div> -->
                 </div>
@@ -77,6 +80,3 @@ if (!empty($_SESSION['product'])) {
     </body>
 
     </html>
-<?php
-}
-?>
