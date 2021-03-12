@@ -124,9 +124,9 @@
 }
 
 .content__img:hover {
+  cursor: pointer;
   opacity: 0.5;
 }
-
 
 .--sakuhin {
   display: table;
@@ -166,7 +166,8 @@
   color: white;
   /* background-color: yellow; */
 }
-.content__sakuhinmei:hover{
+.content__sakuhinmei:hover {
+  cursor: pointer;
   opacity: 0.5;
 }
 .content__arasuzi {
