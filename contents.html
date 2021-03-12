@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>映画館</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item--logo">
+                    <a href=""></a>
+                    <img class="nav__logo-img" src="logo.png" alt=""></li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">ログイン</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="google.com">
+                        <span class="nav__link-inner">作品一覧</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main" id="app">
+        <div class="main__content">
+            <h1 class="content__title">作品一覧</h1>
+
+            <div class="content__item --sakuhin">
+                <div class="content__img" v-on:click="action(1)">
+                    <img src="" alt=""></div>
+                <div class="content__sakuhin">
+                    <h2 class="content__sakuhinmei" v-on:click="action(1)">作品名</h2>
+                    <p class="content__arasuzi">あらすじ</p>
+                </div>
+            </div>
+            <div class="content__item --sakuhin">
+                <div class="content__img">
+                    <img src="" alt=""></div>
+                <div class="content__sakuhin">
+                    <h2 class="content__sakuhinmei">作品名</h2>
+                    <p class="content__arasuzi">あらすじ</p>
+                </div>
+            </div>
+            <div class="content__item --sakuhin">
+                <div class="content__img">
+                    <img src="" alt=""></div>
+                <div class="content__sakuhin">
+                    <h2 class="content__sakuhinmei">作品名</h2>
+                    <p class="content__arasuzi">あらすじ</p>
+                </div>
+            </div>
+            <form action="" method="POST" name="ichiran">
+                <input type="hidden" v-model="input">
+            </form>
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                input: ''
+            }, 
+            methods: {
+                action: function(data){
+                    this.input = data;
+                    document.ichiran.submit();
+                }
+             }
+        })
+    </script>
+    
+    <!-- <footer class="footer"></footer> -->
+</body>
+
+</html>
