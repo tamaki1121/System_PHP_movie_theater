@@ -107,126 +107,48 @@
   align-items: center;
   text-decoration: none;
 }
-.nav__link:hover {
+.nav__link:hover{
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 .nav__link-inner {
 }
-<<<<<<< HEAD:css/tamaki.css
-/* 席選択ページ */
-.header {
-  z-index: 1;
-}
-.content__title {
-  background-color: var(--main-color-dark);
-  color: var(--main-color-bright);
-  padding: 5px;
-}
-.form__seat-app {
-  display: flex;
-  box-sizing: border-box;
-  height: 600px;
-}
-.form__seat-form {
-  width: 650px;
-  height: 600px;
-  display: table;
-  background: grey;
-  padding: 5px;
+.content__item {
+  display:table;
+  background-color: #fff;
 }
 
-.seat-form__row {
-  display: table-row;
+.content__data {
+  display :table-cell;
 }
 
-.seat-form__data {
-  display: table-cell;
-  text-align: center;
-  width: 45px;
-  height: 55px;
-  position: relative;
-}
-
-.seat-form__data div {
-  position: absolute;
+.content__img {
   width: 100%;
-<<<<<<< HEAD:css/tamaki.css
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
+  height: 300px;
+  padding: 5px;
 }
-
-.seat-form__state--available {
-  cursor: pointer;
-  border: 2px solid grey;
-  background-color: white;
-  border-radius: 15%;
+h1 {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
 }
-
-.seat-form__state--unavailable {
-  border: 2px solid grey;
-  border-radius: 15%;
-  background-color: red;
+ul {
+  list-style: none;
 }
-
-.seat-form__serected {
-  cursor: pointer;
-  border: 2px solid grey;
-  border-radius: 15%;
-  background-color: yellow;
-}
-.seat-form__state--available:hover,
-.seat-form__serected:hover {
-  border: 5px solid rgb(0, 119, 255);
-}
-
-.seat-form__state--black {
-  background-color: black;
-  color: white;
-}
-/* 結果画面 */
-body {
-  background-color: var(--main-color-bright);
-}
-.seat-form__result-box {
-  border: 1px solid var(--main-color);
+.date__img {
   width: 200px;
-  height: 100%;
-  padding: 5px;
-  background: var(--main-color-dark);
+  height: 300px;
+  float: left;
 }
-
-.seat-form__result-item {
-  background-color: white;
-  width: 100px;
-  height: 50px;
-  margin-bottom: 5px;
-  border-radius: 15%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.seat-form__desc {
-  padding: 5px;
-}
-.seat-form__desc span {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background-color: red;
-}
-.seat-form__desc span + span {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background-color: yellow;
-}
-/* 登録完了 */
-.item__success {
-  margin-top: 50px;
+.content__radio {
+  float: left;
   font-size: large;
-  text-align: center;
-
+  padding: 5px;
+}
+.content__button {
+  float:left;
+  margin-left: 150px;
+}
+body {
+background-color: var(--main-color-bright);
 }
