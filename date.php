@@ -15,9 +15,6 @@
     if (!empty($_SESSION['name'])) unset($_SESSION['name']);
     if (!empty($_SESSION['url'])) unset($_SESSION['url']);
     if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-    $_POST['name'] = 'aaa';
-    $_POST['id'] = '2';
-    $_POST['url'] = 'aaa';
     if (!isset($_POST['name']) && !isset($_POST['id']) && !isset($_POST['url'])) {
         $errorMessage = '作品一覧からアクセスして下さい。';
     } else {
