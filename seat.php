@@ -6,19 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tamaki.css">
     <title>映画館</title>
 </head>
 
 <body>
     <?php
     if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-    // if (!isset($_POST['time'])) {
-    if (false) {
+    if (isset($_POST['time'])) {
+        // if (false) {
         $errorMessage = '時間ページからアクセスしてください。';
     } else {
         require 'seat_data.php';
-        $_POST['time'] = '1,2020-03-01,B';
+        // $_POST['time'] = '1,2020-03-01,B';
         $data = explode(',', $_POST['time']);
         $_SESSION['time'] = $data[1];
         $_SESSION['roomName'] = $data[2];
@@ -65,26 +65,7 @@
         }
     }
     ?>
-    <header class="header">
-        <nav class="header__nav">
-            <ul class="nav__list">
-                <li class="nav__item--logo">
-                    <a href=""></a>
-                    <img class="nav__logo-img" src="images/logo.png" alt="">
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">ログイン</span>
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">作品一覧</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php require 'nav.php' ?>
     <main class="main">
         <div class="main__content">
             <h1 class="content__title">お好みの席をお選びください</h1>
@@ -104,7 +85,7 @@
                             <div class="seat-form__result-item" v-for="item in inputData">
                                 <div class="seat-form__result-text">{{ item }}</div>
                             </div>
-                            <form action="test.php" method="POST">
+                            <form action="check.php" method="POST">
                                 <input class="" v-for="item in inputData" type="hidden" :value="item" name="seat[]">
                                 <input v-if="inputData.length > 0" type="submit" value="確定する">
                             </form>
