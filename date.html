@@ -10,31 +10,6 @@
 </head>
 
 <body>
-    <?php
-    $user = 'myuser';
-    $password = 'hoge';
-    $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
-    $pdo = new PDO($dns, $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    try {
-    } catch (Exception $e) {
-        echo 'DB接続エラー<br>';
-        echo $e->getMessage();
-        exit();
-    }
-    try {
-        $sql = 'SELECT * FROM movie_plan WHERE movie_work_id = 1 AND date_time >= "2021-03-01 09:00:00" AND date_time <= "2021-03-07 23:59:59"';
-        $stm = $pdo->prepare($sql);
-        if ($stm->execute()) {
-            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-        }
-    } catch (Exception $e) {
-        echo 'クエリに問題があります。';
-        echo $e->getMessage();
-        exit();
-    }
-    ?>
     <header class="header">
         <nav class="header__nav">
             <ul class="nav__list">
@@ -67,14 +42,15 @@
                         <img class="date__img" src="" alt="">
                     </div>
                     <ul class="content__radio">
-                        <?php
-                        foreach ($result as $item) {
-
-                        ?>
-                            <li>
-                                <label for="hiniti<?= $item['id'] ?>"></label><input type="radio" name="hiniti" id="hiniti<?= $item['id'] ?>" value="{id :<?= $item['id'] ?>, room_name: <?= $item['room_name'] ?>, }"><?= $item['date_time'] ?></label>
-                            </li>
-                        <?php } ?>
+                        <li>
+                            <label for="hiniti1"><input type="radio" name="hiniti" id="hiniti1">3/5</label>
+                        </li>
+                        <li>
+                            <label for="hiniti2"><input type="radio" name="hiniti" id="hiniti2">3/6</label>
+                        </li>
+                        <li>
+                            <label for="hiniti3"><input type="radio" name="hiniti" id="hiniti3">3/7</label>
+                        </li>
                         <div>
                             <input type="submit" value="次へ" class="content__button">
 
@@ -89,4 +65,3 @@
 </body>
 
 </html>
->>>>>>> origin/imai
