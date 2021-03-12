@@ -115,6 +115,7 @@
 }
 .content__item {
   display:table;
+  background-color: #fff;
 }
 
 .content__data {
@@ -124,4 +125,30 @@
 .content__img {
   width: 100%;
   height: 300px;
+  padding: 5px;
+}
+h1 {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+}
+ul {
+  list-style: none;
+}
+.date__img {
+  width: 200px;
+  height: 300px;
+  float: left;
+}
+.content__radio {
+  float: left;
+  font-size: large;
+  padding: 5px;
+}
+.content__button {
+  float:left;
+  margin-left: 150px;
+}
+body {
+background-color: var(--main-color-bright);
 }
