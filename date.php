@@ -51,27 +51,9 @@
         }
     }
     ?>
-    <header class="header">
-        <nav class="header__nav">
-            <ul class="nav__list">
-                <li class="nav__item--logo">
-                    <a href="home.php">
-                        <img class="nav__logo-img" src="logo.png" alt="">
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">ログイン</span>
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">作品一覧</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php
+    require 'nav.php';
+    ?>
     <main class="main">
         <div class="main__content">
             <h1 class="content__title">上映日時</h1>
@@ -80,8 +62,8 @@
                 <?php if (!isset($errorMessage)) {
                 ?>
                     <p>日付を選択してください</p>
-                    <img class="date__img" src="<?= $_SESSION['url'] ?>" alt="">
-                    <form action="#" method="POST" class="content__radio">
+                    <img class="date__img" src="images/<?= $_SESSION['url'] ?>" alt="">
+                    <form action="seat.php" method="POST" class="content__radio">
                         <ul>
                             <?php
                             foreach ($result as $item) {

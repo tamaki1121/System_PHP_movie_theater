@@ -1,0 +1,154 @@
+:root {
+  /* サイトのカラー普通・暗い・明るい */
+  --main-color: #404040;
+  --main-color-dark: #2b2a2a;
+  --main-color-bright: #ebebeb;
+
+  /* 余白、中・大・小 */
+  --distance: 15px;
+  --distance-big: 25px;
+  --distance-small: 5px;
+}
+/* 使い方 */
+/* background-color: var(--main-color); */
+/* margin-top: var(--distance); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ページ本体 */
+.main {
+  width: 930px;
+  margin: 0 auto;
+  padding: var(--distance-big);
+}
+/* ページ内のコンテンツ */
+.main__content {
+  width: 880px;
+  height: 1000px;
+  padding: var(--distance);
+}
+/* ページのタイトル(h1タグ) */
+.content__title {
+}
+/* コンテンツ内の要素 */
+.content__item {
+  width: 850px;
+  margin-bottom: var(--distance-big);
+  padding: var(--distance);
+}
+/* 作品名などコンテンツ内の要素のタイトル(h2タグ？) */
+.item__title {
+}
+/* 画像のサイズ(暫定) */
+.item__img {
+  width: 200px;
+  height: 280px;
+  background-color: var(--main-color-dark);
+}
+.item__img-big {
+  width: 240px;
+  height: 336px;
+  background-color: var(--main-color-dark);
+}
+
+/* ↓ここから追加 */
+/* 上のスタイルに追加したい場合は */
+/* 同じ名前のcssを指定して↓に追加 */
+
+/* ナビゲーションバー nav.php */
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: black;
+}
+.nav__list {
+  width: 100%;
+  height: 60px;
+  padding: 5px;
+  overflow: hidden;
+  list-style: none;
+}
+.nav__item--logo {
+  float: left;
+}
+.nav__logo-img {
+  height: 50px;
+  width: 200px;
+  background-color: green;
+}
+.nav__item {
+  height: 50px;
+  width: 150px;
+  margin-left: 5px;
+  float: right;
+  border-radius: 8%;
+  color: white;
+  background-color: grey;
+  /* box-shadow: 3px 3px 3px 3px rgba(251, 255, 0, 0.938); */
+}
+.nav__item:hover {
+  box-shadow: 0 0 5px rgba(251, 255, 0, 1) inset;
+}
+.nav__item {
+}
+.nav__link {
+  height: 100%;
+  width: 100%;
+  border-radius: 8%;
+  font-size: 26px;
+  color: white;
+  font: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.nav__link:hover{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav__link-inner {
+}
+.content__item {
+  display:table;
+  background-color: #fff;
+}
+
+.content__data {
+  display :table-cell;
+}
+
+.content__img {
+  width: 100%;
+  height: 300px;
+  padding: 5px;
+}
+h1 {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+}
+ul {
+  list-style: none;
+}
+.date__img {
+  width: 200px;
+  height: 300px;
+  float: left;
+}
+.content__radio {
+  float: left;
+  font-size: large;
+  padding: 5px;
+}
+.content__button {
+  float:left;
+  margin-left: 150px;
+}
+body {
+background-color: var(--main-color-bright);
+}
