@@ -37,15 +37,17 @@
                 <h1 class="content__title">購入内容</h1>
                 <div class="content__item">
                     <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
+                    
+                    
+                    <img src="<?= $_SESSION['img'] ?>" class="item__img" />
 
-                    <img src="img/movie_img1.jpg" class="item__img" />
                     <!-- <div class="content__confirm"> -->
                     <dl class="content__confirm__list">
                             <dt>作品名</dt>
-                            <dd><?php echo $_SESSION['name']?></dd>
+                            <dd><?= $_SESSION['name']?></dd>
 
                             <dt>日時</dt>
-                            <dd><?php echo$_SESSION['date_time']?></dd>
+                            <dd><?=$_SESSION['date_time']?></dd>
 
                             <dt>座席</dt>
 
