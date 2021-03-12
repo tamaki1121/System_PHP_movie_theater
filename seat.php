@@ -13,7 +13,7 @@
 <body>
     <?php
     if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-    if (isset($_POST['time'])) {
+    if (!isset($_POST['time'])) {
         // if (false) {
         $errorMessage = '時間ページからアクセスしてください。';
     } else {
