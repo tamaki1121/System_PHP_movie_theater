@@ -1,5 +1,12 @@
 
 <?php session_start(); ?>
+
+<?php 
+    if(isset($_POST['seat'])){
+        $_SESSION['seat'] = $_POST['seat'];
+    }
+?>
+
 <!DOCTYPE html>
     <html lang="jp">
 
@@ -38,8 +45,7 @@
                 <div class="content__item">
                     <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
                     
-                    
-                    <img src="<?= $_SESSION['img'] ?>" class="item__img" />
+                    <img src="imges/<?= $_SESSION['url'] ?>" class="item__img" />
 
                     <!-- <div class="content__confirm"> -->
                     <dl class="content__confirm__list">
@@ -49,29 +55,22 @@
                             <dt>日時</dt>
                             <dd><?=$_SESSION['date_time']?></dd>
 
-                            <dt>座席</dt>
-
+                            <dt>座席</dt> 
+                                <!-- 配列から
+                                料金が長さ * 定価 -->        
                             <?php
-                            if(isset($_POST['room_name'])){
-                                $_SESSION['room_name'];
-                            }
 
-                            if(isset($_POST['seat_id'])){
-                                $_SESSION['seat_id'];
+                            foreach($_SESSION['seat'] as $val){
+                                echo "<dd>",$val,"</dd>";
+        
                             }
-                            $room_name = ($_SESSION['room_name']);
-                            $seat_id = ($_SESSION['seat_id']);
-                            ?>           
-
-                            <dd><?php echo ($room_name);?></dd>
-                            <dd><?php echo ($seat_id);?></dd>
-                            <dd><?php echo ($number);?></dd>
+                            ?>
 
                             <dt>料金</dt>
-                            <dd>1,500円</dd>
+                            <dd><?= count($_SESSION['seat'] * 1000)?>円</dd>
 
-                            <button class="ok__button" onclick="">完了</button>
-                            <button class="back__button" onclick="">戻る</button>
+                            <button class="ok__button" onclick="seat_success.php">完了</button>
+                            <button class="back__button" onclick="seat.php">戻る</button>
                     </dl>
                     <!-- </div> -->
                 </div>
@@ -80,5 +79,4 @@
         <!-- <footer class="footer"></footer> -->
 
     </body>
-
     </html>
