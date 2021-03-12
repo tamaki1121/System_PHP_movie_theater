@@ -2,7 +2,7 @@
     <nav class="header__nav">
         <ul class="nav__list">
             <li class="nav__item--logo">
-                <a href="home.html">
+                <a href="home.php">
                     <img class="nav__logo-img" src="logo.png" alt="">
                 </a>
             </li>
