@@ -1,5 +1,10 @@
 <?php
-if (empty($_SESSION['site_user'])) $errotMessage[] = 'ログインしてください。';
+$_SESSION['site_user'] = 'aaa';
+if (empty($_SESSION['site_user'])) {
+    // $errotMessage[] = 'ログインしてください。}';
+    header('Location: login.php');
+    exit();
+}
 if (
     empty($_SESSION['movie_work_id'])
     && empty($_SESSION['name'])
@@ -52,26 +57,7 @@ if (isset($errotMessage)) {
 </head>
 
 <body>
-    <header class="header">
-        <nav class="header__nav">
-            <ul class="nav__list">
-                <li class="nav__item--logo">
-                    <a href=""></a>
-                    <img class="nav__logo-img" src="images/logo.png" alt="">
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">ログイン</span>
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">作品一覧</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php require 'nav.php'; ?>
     <main class="main">
         <div class="main__content">
             <h1 class="content__title">完了ページ</h1>
