@@ -56,46 +56,30 @@
             <?php
             foreach ($result as $item) {
             ?>
-                <div class="content__item --sakuhin">
-                    <div class="content__img" v-on:click="action('<?= $item['id'] ?>','<?= $item['name'] ?>','<?= $item['url'] ?>')">
-                        <img src="<?= $item['url'] ?>" alt="">
+                <form action="date.php" method="POST" name="ichiran<?= $item['id'] ?>">
+                    <input type="hidden" value="<?= $item['id'] ?>" name="id">
+                    <input type="hidden" value="<?= $item['name'] ?>" name="name">
+                    <input type="hidden" value="<?= $item['url'] ?>" name="url">
+                    <div class="content__item --sakuhin">
+                        <a class="content__img" onclick="document.ichiran<?= $item['id'] ?>.submit()">
+                            <img src="<?= $item['url'] ?>" alt="">
+                        </a>
+                        <div class="content__sakuhin">
+                            <a onclick="document.ichiran<?= $item['id'] ?>.submit()">
+                                <h2 class="content__sakuhinmei"><?= $item['name'] ?></h2>
+                            </a>
+                            <p class="content__arasuzi"><?= $item['description'] ?></p>
+                        </div>
                     </div>
-                    <div class="content__sakuhin">
-                        <h2 class="content__sakuhinmei" v-on:click="action('<?= $item['id'] ?>','<?= $item['name'] ?>','<?= $item['url'] ?>')"><?= $item['name'] ?></h2>
-                        <p class="content__arasuzi"><?= $item['description'] ?></p>
-                    </div>
-                </div>
+                </form>
             <?php
             }
 
             ?>
-            <form action="date.php" method="POST" name="ichiran">
-                <input type="hidden" v-model="id" name="id">
-                <input type="hidden" v-model="name" name="name">
-                <input type="hidden" v-model="url" name="url">
-            </form>
         </div>
 
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                id: '',
-                name: '',
-                url: '',
-            },
-            methods: {
-                action: function(id, name, url) {
-                    this.id = id;
-                    this.name = name;
-                    this.url = url;
-                    document.ichiran.submit();
-                }
-            }
-        })
-    </script>
+
 
     <!-- <footer class="footer"></footer> -->
 </body>
