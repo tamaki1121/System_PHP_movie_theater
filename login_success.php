@@ -70,7 +70,7 @@ foreach ($result as $row) {
                         echo 'ログイン名またはパスワードが違います。<br>';
                     }
                     ?>
-                    <button class="back__button" onclick="location.href='./template.html'">TOPへ</button>
+                    <button class="back__button" onclick="location.href='home.php'">TOPへ</button>
                 </div>
 
             </div>
