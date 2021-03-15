@@ -20,7 +20,8 @@ $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $row) {
     $_SESSION['site_user'] = [
         'email' => $row['email'],
-        'password' => $row['password']
+        'password' => $row['password'],
+        'id' => $row['id']
     ];
 }
 ?>
