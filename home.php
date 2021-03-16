@@ -12,6 +12,18 @@
 <body>
     <?php
     require 'nav.php';
+    require 'db_conect.php';
+    try {
+        $sql = 'SELECT * FROM movie_work';
+        $stm = $pdo->prepare($sql);
+        if ($stm->execute()) {
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (Exception $e) {
+        echo 'クエリ1に問題があります。';
+        echo $e->getMessage();
+        exit();
+    }
     ?>
     <main class="main">
         <div class="main__content">
