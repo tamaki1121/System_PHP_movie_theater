@@ -12,7 +12,7 @@
 <body>
     <?php
     require 'nav.php';
-    require 'db_connect.php';
+    require 'db_conect.php';
     try {
         $sql = 'SELECT * FROM movie_work';
         $stm = $pdo->prepare($sql);
