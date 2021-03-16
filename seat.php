@@ -58,7 +58,7 @@ if (!isset($_POST['date'])) {
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as  $val) {
-            $list[$val['seat_number']] = false;
+            $list[$val['seat_number']] = 0;
         }
     } catch (Exception $e) {
         echo "SQLの実行に問題がありました。";
