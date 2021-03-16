@@ -28,7 +28,7 @@ if (
 }
 if (
     empty($_SESSION['date_time'])
-    && empty($_SESSION['roomName'])
+    && empty($_SESSION['room_name'])
     && empty($_SESSION['movie_plan_id'])
 ) {
     $errotMessage[] = '時間が選択されていません。';
@@ -36,7 +36,7 @@ if (
 if (empty($_SESSION['seat'])) $errotMessage[] = '席が選択されていません。';
 if (!isset($errotMessage)) {
     require 'db_conect.php';
-    $result['result'] = 0;
+    $result['result'] = NULL;
     try {
         $sql = 'SELECT COUNT(*) AS result FROM reserve WHERE movie_plan_id = ? AND seat_number IN (';
         for ($i = 0; $i < count($_SESSION['seat']); $i++) {
@@ -58,7 +58,7 @@ if (!isset($errotMessage)) {
         // $errotMessage[] = $e->getMessage();
         $errotMessage[] = '登録に問題がありました';
     }
-    if ($result['result'] == 0) {
+    if ($result['result'] === 0) {
         try {
             $sql = '
         INSERT INTO reserve (id, site_user_id, movie_plan_id, seat_number) VALUE ';
