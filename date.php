@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    $_SESSION['site_user'] = 'login';
+    // $_SESSION['site_user'] = 'login';
     if (empty($_SESSION['site_user'])) {
         header('Location: login.php');
         exit();
