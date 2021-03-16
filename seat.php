@@ -1,4 +1,72 @@
-<?php session_start(); ?>
+<?php session_start();
+// unset($_SESSION);
+// $_SESSION['site_user'] = [
+//     'id' => 1,
+//     'email' => 'koizumi@exsample.com',
+//     'password' => 'koizumi'
+// ];
+// $_SESSION['movie_work_id'] = '1';
+// $_SESSION['name'] = 'aaa';
+// $_SESSION['url'] = 'aaa';
+// $_SESSION['date_time'] = '2020-11-21';
+// $_SESSION['roomName'] = 'A';
+// $_SESSION['movie_plan_id'] = '1';
+if (empty($_SESSION['site_user'])) {
+    header('Location: ./login.php');
+    exit();
+}
+if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
+if (!isset($_POST['time'])) {
+    // if (false) {
+    $errorMessage = '時間ページからアクセスしてください。';
+} else {
+    require 'seat_data.php';
+    $data = explode(',', $_POST['time']);
+    $_SESSION['time'] = $data[1];
+    $_SESSION['roomName'] = $data[2];
+    $_SESSION['timeId'] = $data[0];
+    if ($_SESSION['roomName'] == 'A') {
+        $list = $listA;
+        $room = $roomA;
+    } elseif ($_SESSION['roomName'] == 'B') {
+        $list = $listB;
+        $room = $roomB;
+    }
+    $pdo = (function () {
+        $user = 'myuser';
+        $password = 'hoge';
+        $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
+
+        try {
+            $PDObject = new PDO($dns, $user, $password);
+            $PDObject->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $PDObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $e) {
+            echo "DBの接続に問題がありました。";
+            echo $e->getMessage();
+            exit();
+        }
+        return $PDObject;
+    })();
+    try {
+        $unavailable = [];
+        $sql = "SELECT * 
+                    FROM reserve 
+                    WHERE movie_plan_id = :timeId";
+        $stm = $pdo->prepare($sql);
+        $stm->bindValue(':timeId', $_SESSION['timeId'], PDO::PARAM_INT);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as  $val) {
+            $list[$val['seat_number']] = false;
+        }
+    } catch (Exception $e) {
+        echo "SQLの実行に問題がありました。";
+        echo $e->getMessage();
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -11,60 +79,7 @@
 </head>
 
 <body>
-    <?php
-    if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-    if (!isset($_POST['time'])) {
-        // if (false) {
-        $errorMessage = '時間ページからアクセスしてください。';
-    } else {
-        require 'seat_data.php';
-        // $_POST['time'] = '1,2020-03-01,B';
-        $data = explode(',', $_POST['time']);
-        $_SESSION['time'] = $data[1];
-        $_SESSION['roomName'] = $data[2];
-        $_SESSION['timeId'] = $data[0];
-        if ($_SESSION['roomName'] == 'A') {
-            $list = $listA;
-            $room = $roomA;
-        } elseif ($_SESSION['roomName'] == 'B') {
-            $list = $listB;
-            $room = $roomB;
-        }
-        $pdo = (function () {
-            $user = 'myuser';
-            $password = 'hoge';
-            $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
 
-            try {
-                $PDObject = new PDO($dns, $user, $password);
-                $PDObject->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $PDObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch (Exception $e) {
-                echo "DBの接続に問題がありました。";
-                echo $e->getMessage();
-                exit();
-            }
-            return $PDObject;
-        })();
-        try {
-            $unavailable = [];
-            $sql = "SELECT * 
-                    FROM reserve 
-                    WHERE movie_plan_id = :timeId";
-            $stm = $pdo->prepare($sql);
-            $stm->bindValue(':timeId', $_SESSION['timeId'], PDO::PARAM_INT);
-            $stm->execute();
-            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result as  $val) {
-                $list[$val['seat_number']] = false;
-            }
-        } catch (Exception $e) {
-            echo "SQLの実行に問題がありました。";
-            echo $e->getMessage();
-            exit();
-        }
-    }
-    ?>
     <?php require 'nav.php' ?>
     <main class="main">
         <div class="main__content">
