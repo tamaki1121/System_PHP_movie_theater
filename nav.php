@@ -7,7 +7,7 @@
                 </a>
             </li>
             <?php
-            if (empty($_SESSION['customer'])) {
+            if (empty($_SESSION['site_user'])) {
             ?>
                 <li class="nav__item">
                     <a class="nav__link" href="login.php">

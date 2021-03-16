@@ -11,29 +11,24 @@
 
 <body>
     <?php
+    $_SESSION['site_user'] = 'login';
+    if (empty($_SESSION['site_user'])) {
+        header('Location: login.php');
+        exit();
+    }
     if (!empty($_SESSION['movie_work_id'])) unset($_SESSION['movie_work_id']);
     if (!empty($_SESSION['name'])) unset($_SESSION['name']);
     if (!empty($_SESSION['url'])) unset($_SESSION['url']);
     if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-    if (!isset($_POST['name']) && !isset($_POST['id']) && !isset($_POST['url'])) {
+    if (!isset($_POST['name']) && !isset($_POST['id']) && !isset($_POST['url']) && !isset($errorMessage)) {
         $errorMessage = '作品一覧からアクセスして下さい。';
-    } else {
+    } else if (!isset($errorMessage)) {
         $_SESSION['movie_work_id'] = $_POST['id'];
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['url'] = $_POST['url'];
 
-        $user = 'myuser';
-        $password = 'hoge';
-        $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
-        $pdo = new PDO($dns, $user, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        try {
-        } catch (Exception $e) {
-            echo 'DB接続エラー<br>';
-            echo $e->getMessage();
-            exit();
-        }
+        require "db_conect.php";
+
         try {
             $sql = 'SELECT * FROM movie_plan WHERE movie_work_id = :id  AND date_time >= "2021-03-01 09:00:00" AND date_time <= "2021-03-07 23:59:59"';
             $stm = $pdo->prepare($sql);
@@ -67,8 +62,8 @@
 
                             ?>
                                 <li>
-                                    <label for="hiniti<?= $item['id'] ?>">
-                                        <input type="radio" name="hiniti" id="hiniti<?= $item['id'] ?>" value="<?= $item['id'] ?>,<?= $item['date_time'] ?>,<?= $item['room_name'] ?>">
+                                    <label for="date<?= $item['id'] ?>">
+                                        <input type="radio" name="date" id="date<?= $item['id'] ?>" value="<?= $item['id'] ?>,<?= $item['date_time'] ?>,<?= $item['room_name'] ?>">
                                         <?= $item['date_time'] ?>
                                     </label>
                                 </li>
