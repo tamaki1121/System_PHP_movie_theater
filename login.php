@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="jp">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +11,8 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav class="header__nav">
-            <ul class="nav__list">
-                <li class="nav__item--logo">
-                    <a href=""></a>
-                    <img class="nav__logo-img" src="img/logo.png" alt="">
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">ログイン</span>
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">作品一覧</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php require 'nav.php';
+    ?>
     <main class="main">
         <div class="main__content">
             <h1 class="content__title">名前とパスワードを半角でご入力下さい。</h1>

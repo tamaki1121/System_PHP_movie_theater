@@ -1,22 +1,13 @@
 <?php session_start(); ?>
-
 <?php
-//customerセッション変数を破棄
 unset($_SESSION['site_user']);
-//MySQLデータベースに接続する
 require 'db_conect.php';
-//SQL文を作る（プレースホルダを使った式）
 $sql = "select * from site_user where email = :email and password = :password";
-//プリペアードステートメントを作る
 $stm = $pdo->prepare($sql);
-//プリペアードステートメントに値をバインドする
 $stm->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
 $stm->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
-//SQL文を実行する
 $stm->execute();
-//結果の取得（連想配列で受け取る）
 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-//customerセッションの設定
 foreach ($result as $row) {
     $_SESSION['site_user'] = [
         'email' => $row['email'],
@@ -38,26 +29,9 @@ foreach ($result as $row) {
 </head>
 
 <body>
-    <header class="header">
-        <nav class="header__nav">
-            <ul class="nav__list">
-                <li class="nav__item--logo">
-                    <a href=""></a>
-                    <img class="nav__logo-img" src="img/logo.png" alt="">
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="login.php">
-                        <span class="nav__link-inner">ログイン</span>
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="google.com">
-                        <span class="nav__link-inner">作品一覧</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php
+    require 'nav.php';
+    ?>
     <main class="main">
         <div class="main__content">
             <h1 class="content__title"></h1>
@@ -66,7 +40,7 @@ foreach ($result as $row) {
                 <div class="content__date">
                     <?php
                     if (isset($_SESSION['site_user'])) {
-                        echo 'ログインに成功しました。';
+                        echo 'ログインに成功しました。<br>';
                     } else {
                         echo 'ログイン名またはパスワードが違います。<br>';
                     }
@@ -81,4 +55,3 @@ foreach ($result as $row) {
 </body>
 
 </html>
-
