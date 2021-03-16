@@ -45,8 +45,8 @@
                             }
                             ?>
 
-                            <dt>料金</dt>
-                            <dd><?= count($_SESSION['seat'] * 1000)?>円</dd>
+                            <!-- <dt>料金</dt>
+                            <dd><?= count($_SESSION['seat']) * 1000 ?>円</dd> -->
 
                             <button class="ok__button" onclick="seat_success.php">完了</button>
                             <button class="back__button" onclick="seat.php">戻る</button>
