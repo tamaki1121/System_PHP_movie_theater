@@ -16,15 +16,15 @@ if (empty($_SESSION['site_user'])) {
     exit();
 }
 if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-if (!isset($_POST['time'])) {
+if (!isset($_POST['date'])) {
     // if (false) {
     $errorMessage = '時間ページからアクセスしてください。';
 } else {
     require 'seat_data.php';
-    $data = explode(',', $_POST['time']);
-    $_SESSION['time'] = $data[1];
-    $_SESSION['roomName'] = $data[2];
-    $_SESSION['timeId'] = $data[0];
+    $data = explode(',', $_POST['date']);
+    $_SESSION['movie_plan_id'] = $data[0];
+    $_SESSION['date_time'] = $data[1];
+    $_SESSION['room_name'] = $data[2];
     if ($_SESSION['roomName'] == 'A') {
         $list = $listA;
         $room = $roomA;
@@ -52,9 +52,9 @@ if (!isset($_POST['time'])) {
         $unavailable = [];
         $sql = "SELECT * 
                     FROM reserve 
-                    WHERE movie_plan_id = :timeId";
+                    WHERE movie_plan_id = :movie_plan_id";
         $stm = $pdo->prepare($sql);
-        $stm->bindValue(':timeId', $_SESSION['timeId'], PDO::PARAM_INT);
+        $stm->bindValue(':movie_plan_id', $_SESSION['movie_plan_id'], PDO::PARAM_INT);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as  $val) {
