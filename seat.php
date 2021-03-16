@@ -25,10 +25,10 @@ if (!isset($_POST['date'])) {
     $_SESSION['movie_plan_id'] = $data[0];
     $_SESSION['date_time'] = $data[1];
     $_SESSION['room_name'] = $data[2];
-    if ($_SESSION['roomName'] == 'A') {
+    if ($_SESSION['room_name'] == 'A') {
         $list = $listA;
         $room = $roomA;
-    } elseif ($_SESSION['roomName'] == 'B') {
+    } elseif ($_SESSION['room_name'] == 'B') {
         $list = $listB;
         $room = $roomB;
     }
