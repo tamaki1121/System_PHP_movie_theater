@@ -123,7 +123,7 @@
 }
 
 .content__img {
-  width: 100%;
+  width: 250px;
   height: 300px;
   padding: 5px;
 }
@@ -151,4 +151,8 @@ ul {
 }
 body {
 background-color: var(--main-color-bright);
+}
+
+.topic {
+font-size: 18px;
 }
