@@ -62,7 +62,7 @@
                     <input type="hidden" value="<?= $item['url'] ?>" name="url">
                     <div class="content__item --sakuhin">
                         <a class="content__img" onclick="document.ichiran<?= $item['id'] ?>.submit()">
-                            <img src="<?= $item['url'] ?>" alt="">
+                            <img class="content__img" src="images/<?= $item['url'] ?>" alt="">
                         </a>
                         <div class="content__sakuhin">
                             <a onclick="document.ichiran<?= $item['id'] ?>.submit()">

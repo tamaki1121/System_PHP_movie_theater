@@ -8,7 +8,7 @@
 ## 各種情報
 
 ### 工程数
-
+#### 予定
 |      | 小規模(1) | 大規模(2) |  合計  |
 | ---- | :-------: | :-------: | :----: |
 | 静的 |     3     |     1     |   5    |
@@ -17,26 +17,60 @@
 |      |           |           |
 |      |           | **総計**  | **20** |
 
-### 各ペ－ジと担当など(予定)
+#### 実際
+|      | 小規模(1) | 大規模(2) |  合計  |
+| ---- | :-------: | :-------: | :----: |
+| 静的 |     1     |     3     |   7    |
+| 動的 |     0     |     5    |   10   |
+| 内部 |     2     |     1     |   4    |
+|      |           |           |
+|      |           | **総計**  | **21** |
 
-- imai1121
+
+### 各ペ－ジと担当など
+#### 予定
+
+- imai1212
   -
-  - home.php (Top ページ)
-  - date.php (日付用 form)
-  - time.php (時間用 form)
-  - nav.php (ナビゲーションバー)
+  - home.php (Top ページ) 小 静的ページ
+  - date.php (日付用 form) 小 動的ページ
+  - time.php (時間用 form) 大 動的ページ
+  - nav.php (ナビゲーションバー) 小 内部ページ
 - Honda-Tadakatu
   -
-  - check.php (登録前の最終確認画面)
-  - login.php (ログイン form)
-  - login_success.php (ログイン可否)
-  - db_conect.php (DB 接続)
+  - check.php (登録前の最終確認画面) 小 静的ページ
+  - login.php (ログイン form) 小 静的ページ
+  - login_success.php (ログイン可否) 大 動的ページ
+  - db_conect.php (DB 接続) 小 内部ページ
 - ruka0315
   -
-  - contents.php (映画一覧)
-  - logout.php (ログアウト画面)
+  - contents.php (映画一覧) 大 動的ページ
+  - logout.php (ログアウト画面) 大 静的ページ
 - tamaki1121
   -
-  - seat.php (座席用 form)
-  - seat_succsess.php (登録)
-  - データベース関連
+  - seat.php (座席用 form) 大 動的ページ
+  - seat_succsess.php (登録) 大 動的ページ
+  - データベース関連 大 内部ページ
+
+#### 実際
+
+- imai1212
+  -
+  - **home.php** (Top ページ おすすめ作品を表示) 大 静的ページ
+  - **date.php** (放映時間や日付用 form) 大 動的ページ
+  - nav.php (ナビゲーションバー) 小 内部ページ
+- Honda-Tadakatu
+  -
+  - **check.php** (登録前の最終確認画面) 大 静的ページ
+  - login.php (ログイン form) 小 静的ページ
+  - login_success.php (ログイン可否) 大 動的ページ
+  - db_conect.php (DB 接続) 小 内部ページ
+- ruka0315
+  -
+  - contents.php (映画一覧) 大 動的ページ
+  - logout.php (ログアウト画面) 大 静的ページ
+- tamaki1121
+  -
+  - seat.php (座席用 form) 大 動的ページ
+  - seat_succsess.php (登録) 大 動的ページ
+  - データベース関連 大 内部ページ
