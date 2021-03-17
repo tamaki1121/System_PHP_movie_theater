@@ -58,7 +58,9 @@ if (!isset($_POST['date'])) {
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as  $val) {
-            $list[$val['seat_number']] = 0;
+            $list[
+                $val['seat_number']
+            ] = 0;
         }
     } catch (Exception $e) {
         echo "SQLの実行に問題がありました。";
@@ -66,7 +68,9 @@ if (!isset($_POST['date'])) {
         exit();
     }
 }
+// foreach($list as $item):
 ?>
+<!-- <input type="checkbox" value="<?= $item['seat_number']?>"><?= $item['seat_number']?> -->
 <!DOCTYPE html>
 <html lang="jp">
 
