@@ -113,7 +113,6 @@
 
 .nav__link-inner {
 }
-<<<<<<< HEAD:css/tamaki.css
 /* 席選択ページ */
 .header {
   z-index: 1;
@@ -151,7 +150,6 @@
 .seat-form__data div {
   position: absolute;
   width: 100%;
-<<<<<<< HEAD:css/tamaki.css
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

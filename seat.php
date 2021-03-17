@@ -16,15 +16,21 @@ if (empty($_SESSION['site_user'])) {
     exit();
 }
 if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-if (!isset($_POST['date'])) {
-    // if (false) {
-    $errorMessage = '時間ページからアクセスしてください。';
-} else {
-    require 'seat_data.php';
+if (isset($_POST['date'])) {
     $data = explode(',', $_POST['date']);
     $_SESSION['movie_plan_id'] = $data[0];
     $_SESSION['date_time'] = $data[1];
     $_SESSION['room_name'] = $data[2];
+}
+if (
+    empty($_SESSION['movie_plan_id'])
+    || empty($_SESSION['date_time'])
+    || empty($_SESSION['room_name'])
+) {
+    $errorMessage[] = '時間ページからアクセスしてください。';
+}
+if (!isset($errorMessage)) {
+    require 'seat_data.php';
     if ($_SESSION['room_name'] == 'A') {
         $list = $listA;
         $room = $roomA;
@@ -32,24 +38,24 @@ if (!isset($_POST['date'])) {
         $list = $listB;
         $room = $roomB;
     }
-    $pdo = (function () {
-        $user = 'myuser';
-        $password = 'hoge';
-        $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
+    // $pdo = (function () {
+    //     $user = 'myuser';
+    //     $password = 'hoge';
+    //     $dns = 'mysql:host=localhost;dbname=movie_theater_site;charset=utf8';
 
-        try {
-            $PDObject = new PDO($dns, $user, $password);
-            $PDObject->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $PDObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (Exception $e) {
-            echo "DBの接続に問題がありました。";
-            echo $e->getMessage();
-            exit();
-        }
-        return $PDObject;
-    })();
+    //     try {
+    //         $PDObject = new PDO($dns, $user, $password);
+    //         $PDObject->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    //         $PDObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     } catch (Exception $e) {
+    //         echo "DBの接続に問題がありました。";
+    //         echo $e->getMessage();
+    //         exit();
+    //     }
+    //     return $PDObject;
+    // })();
+    require 'db_conect.php';
     try {
-        $unavailable = [];
         $sql = "SELECT * 
                     FROM reserve 
                     WHERE movie_plan_id = :movie_plan_id";
@@ -58,19 +64,14 @@ if (!isset($_POST['date'])) {
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as  $val) {
-            $list[
-                $val['seat_number']
-            ] = 0;
+            $list[$val['seat_number']] = 0;
         }
     } catch (Exception $e) {
-        echo "SQLの実行に問題がありました。";
-        echo $e->getMessage();
-        exit();
+        // $errotMessage[] = $e->getMessage();
+        $errorMessage[] = 'SQLの実行に問題がありました。';
     }
 }
-// foreach($list as $item):
 ?>
-<!-- <input type="checkbox" value="<?= $item['seat_number']?>"><?= $item['seat_number']?> -->
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -87,7 +88,7 @@ if (!isset($_POST['date'])) {
     <?php require 'nav.php' ?>
     <main class="main">
         <div class="main__content">
-            <h1 class="content__title">お好みの席をお選びください</h1>
+            <h1 class="content__title">お好みの席をお選びください(ルーム<?= $_SESSION['room_name'] ?>)</h1>
             <div class="content__item">
                 <?php if (!isset($errorMessage)) : ?>
                     <div id="app" class="form__seat-app">
@@ -113,7 +114,9 @@ if (!isset($_POST['date'])) {
                     </div>
                     <p class="seat-form__desc"><span></span>利用不可 <span></span>選択済み</p>
                 <?php else : ?>
-                    <p><?= $errorMessage ?></p>
+                    <?php foreach ($errorMessage as $item) : ?>
+                        <p><?= $item ?></p>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>
