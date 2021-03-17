@@ -17,7 +17,16 @@ session_start();
     require 'nav.php';
     require 'db_conect.php';
     try {
-        $sql = 'SELECT * FROM movie_work limit 3';
+        $sql = '
+        SELECT * ,COUNT(movie_work_id) AS C
+        FROM movie_plan
+        JOIN movie_work
+        ON movie_work_id = movie_work.id
+        WHERE date_time >= CURRENT_TIMESTAMP
+        AND date_time <= DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY)
+        GROUP BY movie_work_id
+        ORDER BY C DESC
+        LIMIT 3;';
         $stm = $pdo->prepare($sql);
         if ($stm->execute()) {
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);

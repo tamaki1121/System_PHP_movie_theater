@@ -31,7 +31,12 @@
         require "db_conect.php";
 
         try {
-            $sql = 'SELECT * FROM movie_plan WHERE movie_work_id = :id  AND date_time >= "2021-03-01 09:00:00" AND date_time <= "2021-03-07 23:59:59"';
+            $sql = '
+            SELECT * 
+            FROM movie_plan 
+            WHERE movie_work_id = :id
+            AND date_time >= CURRENT_TIMESTAMP
+            AND date_time <= DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY);';
             $stm = $pdo->prepare($sql);
             $stm->bindValue(':id', $_SESSION['movie_work_id'], PDO::PARAM_INT);
             if ($stm->execute()) {
@@ -86,4 +91,3 @@
 </body>
 
 </html>
->>>>>>> origin/imai
