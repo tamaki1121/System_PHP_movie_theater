@@ -27,7 +27,7 @@ if (isset($_POST['seat'])) {
             <div class="content__item">
                 <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
 
-                <img src="imges/<?= $_SESSION['url'] ?>" class="item__img" />
+                <img src="images/<?= $_SESSION['url'] ?>" class="item__img" />
 
                 <!-- <div class="content__confirm"> -->
                 <dl class="content__confirm__list">
