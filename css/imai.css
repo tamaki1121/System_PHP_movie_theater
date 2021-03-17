@@ -156,3 +156,7 @@ background-color: var(--main-color-bright);
 .topic {
 font-size: 18px;
 }
+.content__data--topic{
+  margin-top: 3px;
+  border: 1px solid #000;
+}

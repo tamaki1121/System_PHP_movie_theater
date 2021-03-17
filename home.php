@@ -29,7 +29,15 @@ session_start();
     }
     if (!empty($_SESSION['site_user'])) {
         try {
-            $sql = 'SELECT * FROM reserve WHERE site_user_id = :id';
+            $sql = '
+            SELECT seat_number, date_time, name, room_name
+            FROM reserve 
+            JOIN movie_plan
+            ON reserve.movie_plan_id = movie_plan.id
+            JOIN movie_work
+            ON movie_plan.movie_work_id = movie_work.id
+            WHERE site_user_id = :id
+            AND date_time >= CURRENT_DATE;';
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $_SESSION['site_user']['id'], PDO::PARAM_INT);
             if ($stmt->execute()) {
@@ -57,7 +65,7 @@ session_start();
                             <h2 class="topic"><?= $item['name'] ?></h2>
                             <!--映画ポスター　だいたい200*400ぐらい？-->
                             <a onclick="document.ichiran<?= $item['id'] ?>.submit()">
-                                <img class="content__img" src="images/" alt=""></a>
+                                <img class="content__img" src="images/<?= $item['url'] ?>" alt=""></a>
                         </form>
                     </div>
                 <?php
@@ -65,21 +73,24 @@ session_start();
                 ?>
 
             </div>
-            <h1 class="content__title"> ご予約状況
-            </h1>
-            <div class="content__item">
-                <?php
-                foreach ($result2 as $item) {
-                ?>
-                    <div class="content__data--topic">
+            <?php if (!empty($_SESSION['site_user'])) : ?>
+                <h1 class="content__title"> ご予約状況</h1>
+                <div class="content__item">
+                    <?php
+                    foreach ($result2 as $item) {
+                    ?>
+                        <div class="content__data--topic">
+                            <p>作品名 :<?= $item['name'] ?></p>
+                            <p>日時 :<?= $item['date_time'] ?></p>
+                            <p>ルーム :<?= $item['room_name'] ?></p>
+                            <p>席 :<?= $item['seat_number'] ?></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
 
-                        <p><?= $item['movie_plan_id'] ?>:<?= $item['seat_number'] ?></p>
-                    </div>
-                <?php
-                }
-                ?>
-
-            </div>
+                </div>
+            <?php endif; ?>
             <!-- ここにページ内要素、content__itemは増やしても大丈夫 -->
         </div>
         </div>
