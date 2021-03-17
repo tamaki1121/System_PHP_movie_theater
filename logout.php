@@ -7,7 +7,7 @@ if (!empty($_SESSION['movie_plan_id'])) unset($_SESSION['movie_plan_id']);
 if (!empty($_SESSION['date_time'])) unset($_SESSION['date_time']);
 if (!empty($_SESSION['room_name'])) unset($_SESSION['room_name']);
 if (!empty($_SESSION['seat'])) unset($_SESSION['seat']);
-if (!empty($_SESSION['customer'])) unset($_SESSION['costomer']);
+if (!empty($_SESSION['site_user'])) unset($_SESSION['site_user']);
 ?>
 
 <!DOCTYPE html>
